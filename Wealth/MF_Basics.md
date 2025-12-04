@@ -1,3 +1,8 @@
+##### Disclaimer 
+This video is for educational purposes only and does not recommend mutual fund investment. Please invest at your own risk.
+
+
+
 # Mutual Fund Basics
 
 > A concise reference guide to core mutual fund concepts, calculations, and examples. Perfect for beginners and as quick notes for investors.
@@ -154,3 +159,4 @@ If two funds return 12% gross but have expense ratios 0.5% and 1.5%:
 ---
 
 *End of document — quick, shareable, and ready to copy as a `.md` file.*
+
