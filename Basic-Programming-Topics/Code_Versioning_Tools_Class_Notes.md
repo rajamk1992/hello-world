@@ -1,0 +1,213 @@
+# Code Versioning Tools -- Class Notes
+
+**Prepared for College Session**\
+**Topic: Git & Version Control Basics**
+
+------------------------------------------------------------------------
+
+## 1. What is Version Control?
+
+Version Control is a system that helps track changes in code over time.
+
+It allows developers to: - Track what changed - Know who changed it -
+Revert back to older versions - Collaborate safely in teams
+
+Think of it like **Google Docs history for code projects**.
+
+------------------------------------------------------------------------
+
+## 2. Why Do We Need Version Control?
+
+Without version control: - Code gets overwritten - No tracking of
+mistakes - Difficult team collaboration
+
+With version control: - Safe teamwork - Easy rollback - Organized
+development - Better release management
+
+------------------------------------------------------------------------
+
+## 3. Most Commonly Used Tool -- Git
+
+Git is: - Free and open-source - Distributed version control system -
+Used by almost all software companies
+
+------------------------------------------------------------------------
+
+## 4. Common Platforms Using Git
+
+-   GitHub
+-   GitLab
+-   Bitbucket
+
+These platforms store your code online and help with collaboration.
+
+------------------------------------------------------------------------
+
+# 5. Basic Git Workflow
+
+1.  Create project folder
+2.  Initialize Git
+3.  Add files
+4.  Commit changes
+5.  Push to remote repository
+6.  Pull latest changes when needed
+
+------------------------------------------------------------------------
+
+# 6. Most Commonly Used Git Commands
+
+## Initialize Repository
+
+``` bash
+git init
+```
+
+Creates a new Git repository.
+
+------------------------------------------------------------------------
+
+## Check Status
+
+``` bash
+git status
+```
+
+Shows current changes and branch information.
+
+------------------------------------------------------------------------
+
+## Add Files to Staging
+
+``` bash
+git add filename
+```
+
+Adds a specific file.
+
+``` bash
+git add .
+```
+
+Adds all files.
+
+------------------------------------------------------------------------
+
+## Commit Changes
+
+``` bash
+git commit -m "Your commit message"
+```
+
+Saves changes with a message.
+
+------------------------------------------------------------------------
+
+## View Commit History
+
+``` bash
+git log
+```
+
+Shows commit history.
+
+------------------------------------------------------------------------
+
+## Create Branch
+
+``` bash
+git branch branch-name
+```
+
+------------------------------------------------------------------------
+
+## Switch Branch
+
+``` bash
+git checkout branch-name
+```
+
+OR (new method)
+
+``` bash
+git switch branch-name
+```
+
+------------------------------------------------------------------------
+
+## Create and Switch Branch Together
+
+``` bash
+git checkout -b branch-name
+```
+
+------------------------------------------------------------------------
+
+## Merge Branch
+
+``` bash
+git merge branch-name
+```
+
+------------------------------------------------------------------------
+
+## Connect to Remote Repository
+
+``` bash
+git remote add origin repository-URL
+```
+
+------------------------------------------------------------------------
+
+## Push Code to Remote
+
+``` bash
+git push origin main
+```
+
+------------------------------------------------------------------------
+
+## Pull Latest Changes
+
+``` bash
+git pull origin main
+```
+
+------------------------------------------------------------------------
+
+## Clone Repository
+
+``` bash
+git clone repository-URL
+```
+
+------------------------------------------------------------------------
+
+# 7. Important Concepts
+
+-   Repository → Project folder
+-   Commit → Save point
+-   Branch → Separate development line
+-   Merge → Combine branches
+-   Remote → Online repository
+
+------------------------------------------------------------------------
+
+# 8. Real-Time Example for Class
+
+Imagine 5 developers working on one project:
+
+Without Git: - One person overwrites another's work.
+
+With Git: - Everyone works on separate branches. - Code is merged after
+review. - Full history is maintained.
+
+------------------------------------------------------------------------
+
+# 9. One-Line Definition
+
+**Version control tools help teams track, manage, and collaborate on
+code changes efficiently and safely.**
+
+------------------------------------------------------------------------
+
+End of Notes
