@@ -22,4 +22,4 @@ Careers - 10 mins
 
 Chapter N -
 
-Codeing with AI - Co-pilot - 30 mins 
+Basic React & Node JS Codeing with AI - Co-pilot - 30 mins 
