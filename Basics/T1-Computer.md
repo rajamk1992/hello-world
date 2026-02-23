@@ -198,13 +198,8 @@ Avoid suspicious links & use HTTPS websites.
 ---
 
 ## 12. Learning Resources
-- freeCodeCamp
-- Coursera
-- Khan Academy
-- Books: *How Computers Work*
-
+- W3-Schools
 ---
-
 ## Quick Tips
 ✔ Always update your computer  
 ✔ Use strong passwords  
