@@ -179,20 +179,9 @@ Auto deployment - Release within hours or days
 
 ------------------------------------------------------------------------
 
-## 10. Short Seminar Definition
+## 10. Short Definition
 
 > DevOps is a culture that integrates development and operations using
 > automation to deliver applications faster, safer, and more reliably.
 
-------------------------------------------------------------------------
 
-## 11. Simple Analogy
-
-DevOps is like a food delivery system:
-
--   Chef → Developer\
--   Quality checker → Tester\
--   Delivery partner → Operations\
--   Kitchen automation → DevOps tools
-
-Goal: Deliver quality software quickly and reliably.

@@ -81,7 +81,7 @@ tasks in software projects.
 
 ------------------------------------------------------------------------
 
-## Short Seminar Definition
+## Short Definition
 
 Software testing ensures that an application works correctly, meets
 requirements, and is free from major defects before release. Tools like

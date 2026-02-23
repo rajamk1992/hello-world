@@ -1,4 +1,4 @@
-# SDLC -- Seminar Presentation Notes
+# SDLC
 
 ## What is SDLC?
 
@@ -21,7 +21,7 @@ design, develop, test, and maintain software.
 -   Identify system features
 -   Prepare requirement documents
 
-Output: - BRD / FRD
+Output: - BRD / FRD 
 
 ------------------------------------------------------------------------
 
@@ -55,8 +55,7 @@ Output: - Project plan
 ## 4. Development (Coding)
 
 -   Frontend development
--   Backend development
--   API creation
+-   Backend development & API creation
 -   Database integration
 
 This is the longest phase in SDLC.
@@ -127,23 +126,14 @@ This phase continues throughout the product life.
 -   DevOps Engineer → Handles deployment
 -   Support Team → Maintains system
 
-------------------------------------------------------------------------
-
-## Easy Analogy (For Students)
-
-Building a House:
-
-1.  Requirement → What type of house?
-2.  Planning → Budget & timeline
-3.  Design → Blueprint
-4.  Development → Construction
-5.  Testing → Quality check
-6.  Deployment → Handover
-7.  Maintenance → Repairs
 
 ------------------------------------------------------------------------
 
-## Short Seminar Definition
+## Short Definition
 
 > SDLC is a structured process that helps teams plan, build, test,
 > deploy, and maintain high-quality software in an organized way.
+
+### CR ( Requirement )
+
+    URD → BRD → Sign off → FSD → Effort Estimation → Cost Approval → PO Release → Dev → SIT Testing → UAT Testing → Gi Live 
