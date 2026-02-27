@@ -1,7 +1,62 @@
+# AWS + Docker + EKS Complete Guide
 
-# AWS + Docker + EC2 + EKS + CI/CD
-## Advanced Architecture Guide (With Diagrams)
+------------------------------------------------------------------------
 
+# PART 1: Most Commonly Used AWS Services
+
+## 1. EC2 (Elastic Compute Cloud)
+
+-   Virtual servers in the cloud
+-   Used to host applications
+-   Full control over OS and environment
+-   Suitable for traditional and containerized applications
+
+## 2. S3 (Simple Storage Service)
+
+-   Object storage service
+-   Used for file storage (images, PDFs, backups)
+-   Highly durable and scalable
+-   Common in banking for document storage and logs
+
+## 3. RDS (Relational Database Service)
+
+-   Managed SQL database (MySQL, PostgreSQL, etc.)
+-   Automated backups
+-   Multi-AZ for high availability
+-   No manual database server management
+
+## 4. IAM (Identity and Access Management)
+
+-   Manages users and permissions
+-   Controls access to AWS resources
+-   Essential for secure production systems
+
+## 5. CloudWatch
+
+-   Monitoring and logging service
+-   Tracks CPU, memory, logs
+-   Used for alerts and alarms
+
+## 6. VPC (Virtual Private Cloud)
+
+-   Private network inside AWS
+-   Controls subnets, routing, internet access
+-   Critical for secure architecture
+
+## 7. ECR (Elastic Container Registry)
+
+-   Stores Docker images securely
+-   Integrated with ECS and EKS
+
+## 8. EKS (Elastic Kubernetes Service)
+
+-   Managed Kubernetes service
+-   Used for container orchestration
+-   Supports auto scaling and rolling deployments
+
+------------------------------------------------------------------------
+
+# AWS + Docker + EC2 
 ---
 # PART 1: Most Commonly Used AWS Services (Detailed)
 
@@ -26,23 +81,8 @@ Architecture:
 
 ---
 
-## 2. S3 (Simple Storage Service)
 
-Object storage with very high durability.
-
-Architecture:
-
-            Application
-                 ↓
-                S3
-                 ↓
-           Lifecycle Policy
-                 ↓
-              Glacier
-
----
-
-## 3. RDS (Relational Database Service)
+## 2. RDS (Relational Database Service)
 
 Managed SQL database with Multi-AZ support.
 
@@ -75,7 +115,7 @@ Production Network Layout:
                    ↓
             Private Subnet
                    ↓
-              EC2 / EKS
+                  EC2
                    ↓
                   RDS
 
@@ -129,6 +169,7 @@ CMD ["node", "app.js"]
 ```
 
 ---
+docker build -t banking-app .
 
 Run Container:
 
@@ -162,11 +203,7 @@ docker run -d -p 80:3000 --restart always --name banking-container banking-app
 
                   Users
                     ↓
-                 Route53
-                    ↓
-                   ALB
-                    ↓
-                Ingress
+                 Route
                     ↓
                EKS Cluster
                     ↓
@@ -179,51 +216,3 @@ docker run -d -p 80:3000 --restart always --name banking-container banking-app
                    RDS
                     ↓
                     S3
-
----
-
-## Kubernetes Deployment Example
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: banking-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: banking-app
-  template:
-    metadata:
-      labels:
-        app: banking-app
-    spec:
-      containers:
-        - name: banking-container
-          image: <ACCOUNT_ID>.dkr.ecr.region.amazonaws.com/banking-app:latest
-          ports:
-            - containerPort: 3000
-```
-
----
-
-Rolling Update Command:
-
-kubectl set image deployment/banking-deployment banking-container=<new-image>
-
----
-
-# Enterprise Enhancements
-
-- Horizontal Pod Autoscaler
-- Blue/Green deployment
-- Readiness & Liveness probes
-- AWS Load Balancer Controller
-- Secrets Manager
-- CloudWatch monitoring
-- Multi-AZ node groups
-
----
-
-END OF DOCUMENT

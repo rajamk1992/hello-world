@@ -158,15 +158,6 @@ Apply:
 
     kubectl apply -f service.yaml
 
-## 4. Update Deployment (Rolling Update)
-
-    kubectl set image deployment/banking-deployment banking-container=<new-image>
-
-Kubernetes will: - Start new pods - Perform health checks - Stop old
-pods - Ensure zero downtime
-
-------------------------------------------------------------------------
-
 # Summary
 
 AWS Core Services → Infrastructure foundation\

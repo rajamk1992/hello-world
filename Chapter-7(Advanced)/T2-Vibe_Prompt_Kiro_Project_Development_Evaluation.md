@@ -139,10 +139,3 @@ When evaluating project development approach:
 5.  AI dependency risk
 6.  Long-term maintainability
 
-------------------------------------------------------------------------
-
-# Recommendation
-
--   Startup Projects → Vibe Coding → Refine using Prompt Coding
--   FinTech Projects → Prompt Coding + Governance
--   Banking / Enterprise Projects → Structured Kiro-style Approach

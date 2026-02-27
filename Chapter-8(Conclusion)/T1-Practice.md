@@ -1,4 +1,4 @@
-# 🚀 How MCA Students Can Prepare for the IT Industry in 2026
+# 🚀 How Can Prepare for the IT Industry in 2026
 
 ------------------------------------------------------------------------
 
@@ -8,10 +8,6 @@
 Don't scroll YouTube. Use YouTube as a university.
 
 ### 🔹 Web Development Channels
-
--   Traversy Media\
--   CodeWithHarry\
--   freeCodeCamp.org
 
 ### Search Topics:
 
@@ -136,19 +132,11 @@ Professional maturity matters.
 
 ------------------------------------------------------------------------
 
-## 7️⃣ Clarity on WhatsApp (Interview Communication)
-
-### ❌ Bad Reply:
-
-Hi
+## 7️⃣ Clarity on Communication
 
 ### ✅ Professional Reply:
 
-Hi Ma'am/Sir,\
-Thank you for the opportunity. I am available tomorrow between 10 AM --
-1 PM for the interview.
-
-📌 Your WhatsApp communication reflects your professionalism.
+📌 Your communication reflects your professionalism.
 
 ------------------------------------------------------------------------
 
@@ -190,21 +178,10 @@ AI is not optional.
 
 ------------------------------------------------------------------------
 
-# 🔥 Final Message for the Seminar
+# 🔥 
 
 Degree gives qualification.\
 Skill gives job.\
 Communication gives growth.\
 Attitude gives leadership.
 
-------------------------------------------------------------------------
-
-## Bonus: As a Project Manager, Share With Students:
-
--   Real interview mistakes you've seen\
--   Real resume mistakes\
--   Real communication issues
-
-------------------------------------------------------------------------
-
-**End of Seminar**

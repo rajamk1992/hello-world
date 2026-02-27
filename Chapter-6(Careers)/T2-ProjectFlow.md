@@ -1,9 +1,7 @@
 # Sponcenter - Event Management System
 
-## Complete Seminar Documentation
+## Complete Flow
 
-Author: Mk Raja\
-Role: Project Manager
 
 ------------------------------------------------------------------------
 
@@ -38,7 +36,6 @@ events and services - Admin to manage the complete platform
 -   Event Host
 -   Vendor
 -   End User
--   Finance Team
 
 ## 2.3 High-Level Requirements
 
@@ -282,6 +279,3 @@ This project demonstrates end-to-end project management including: BRD,
 FSD, Estimation, Sprint Planning, Architecture, Database Design, and
 Deployment Strategy.
 
-------------------------------------------------------------------------
-
-End of Seminar Document
