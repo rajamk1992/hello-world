@@ -139,17 +139,3 @@ summary(data)
 plot(data)
 ```
 
-------------------------------------------------------------------------
-
-# 🔥 Final Message
-
-R is not just a programming language.\
-It is a decision-making tool.
-
-Degree gives qualification.\
-Skill gives job.\
-Data skills give future security.
-
-------------------------------------------------------------------------
-
-**End of Seminar**
