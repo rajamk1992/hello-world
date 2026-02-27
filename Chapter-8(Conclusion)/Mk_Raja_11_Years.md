@@ -1,4 +1,4 @@
-# 🚀 My 11-Year Journey in IT -- From PHP to AI
+# 🚀 My 11-Year Journey in IT -- From PHP to PM
 
 **By Mk Raja**
 
@@ -205,7 +205,7 @@ But your **ability to learn and adapt** should never change.
 From: - Core PHP Developer\
 To: - Laravel Developer\
 To: - MERN Stack Developer\
-To: - AI-Integrated System Builder\
+To: - Managed team  - AI-Integrated System\
 To: - Project Manager
 
 This is not just a technology journey.\
