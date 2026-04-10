@@ -1,0 +1,986 @@
+Here are advanced JavaScript tricky questions WITH answers — these are strong-level questions suitable for 5–8 years developers. These help separate average vs truly strong JS developers.
+Advanced JavaScript Tricky Questions With Answers
+1️⃣ Event Loop — Complex Mix
+JavaScript
+console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+}, 0);
+
+async function test() {
+  console.log("C");
+
+  await Promise.resolve();
+
+  console.log("D");
+}
+
+test();
+
+Promise.resolve().then(() => {
+  console.log("E");
+});
+
+console.log("F");
+✅ Answer
+
+A
+C
+F
+D
+E
+B
+Explanation
+Execution order:
+Sync → A
+test() → logs C
+Sync → F
+Microtasks → D, E
+Macrotasks → B
+2️⃣ Promise Error Flow
+JavaScript
+Promise.resolve()
+  .then(() => {
+    throw new Error("Error");
+  })
+  .then(() => {
+    console.log("Then");
+  })
+  .catch(() => {
+    console.log("Catch");
+  })
+  .then(() => {
+    console.log("After Catch");
+  });
+✅ Answer
+
+Catch
+After Catch
+Explanation
+Error jumps to .catch(), then continues chain.
+3️⃣ Object Mutation Trap
+JavaScript
+const user = { name: "John" };
+
+function update(obj) {
+  obj.name = "Jane";
+  obj = { name: "Alex" };
+}
+
+update(user);
+
+console.log(user.name);
+✅ Answer
+
+Jane
+Explanation
+Object reference mutated first.
+Reassignment doesn't affect original reference.
+4️⃣ this Binding Puzzle
+JavaScript
+var name = "Global";
+
+const obj = {
+  name: "Object",
+
+  show: function () {
+    console.log(this.name);
+  }
+};
+
+const fn = obj.show;
+
+fn();
+✅ Answer
+
+Global
+Explanation
+Function called without object → this refers to global.
+5️⃣ Prototype Modification After Instance
+JavaScript
+function Person() {}
+
+const p1 = new Person();
+
+Person.prototype.say = function () {
+  console.log("Hi");
+};
+
+p1.say();
+✅ Answer
+
+Hi
+Explanation
+Prototype lookup happens at runtime.
+6️⃣ Promise.all Failure
+JavaScript
+Promise.all([
+  Promise.resolve(1),
+  Promise.reject("Error"),
+  Promise.resolve(3)
+])
+.then(console.log)
+.catch(console.log);
+✅ Answer
+
+Error
+Explanation
+Any rejection → whole Promise.all fails.
+7️⃣ Promise.race
+JavaScript
+Promise.race([
+  new Promise(resolve =>
+    setTimeout(() => resolve("First"), 100)
+  ),
+  new Promise(resolve =>
+    setTimeout(() => resolve("Second"), 50)
+  )
+])
+.then(console.log);
+✅ Answer
+
+Second
+8️⃣ Object Key Trap
+JavaScript
+const obj = {};
+
+obj[{}] = "A";
+obj[{}] = "B";
+
+console.log(obj);
+✅ Answer
+
+{ "[object Object]": "B" }
+Explanation
+Objects become string keys.
+9️⃣ Map Behavior
+JavaScript
+const map = new Map();
+
+map.set({}, "A");
+map.set({}, "B");
+
+console.log(map.size);
+✅ Answer
+
+2
+Explanation
+Map stores object references separately.
+🔟 Freeze Trap
+JavaScript
+const obj = Object.freeze({
+  a: 1,
+  b: { c: 2 }
+});
+
+obj.b.c = 5;
+
+console.log(obj.b.c);
+✅ Answer
+
+5
+Explanation
+Freeze is shallow, not deep.
+1️⃣1️⃣ Async Await Order
+JavaScript
+async function test() {
+  console.log(1);
+
+  await Promise.resolve();
+
+  console.log(2);
+}
+
+console.log(3);
+
+test();
+
+console.log(4);
+✅ Answer
+
+3
+1
+4
+2
+1️⃣2️⃣ WeakMap Knowledge
+Question
+Where should WeakMap be used?
+✅ Answer
+Use WeakMap when:
+Keys are objects
+You want automatic garbage collection
+Store private metadata
+Example:
+JavaScript
+const weakMap = new WeakMap();
+
+let obj = {};
+
+weakMap.set(obj, "data");
+
+obj = null; // eligible for GC
+1️⃣3️⃣ Generator Function
+JavaScript
+function* gen() {
+  yield 1;
+  yield 2;
+}
+
+const g = gen();
+
+console.log(g.next().value);
+console.log(g.next().value);
+✅ Answer
+
+1
+2
+1️⃣4️⃣ Symbol Trick
+JavaScript
+const sym1 = Symbol("id");
+const sym2 = Symbol("id");
+
+console.log(sym1 === sym2);
+✅ Answer
+
+false
+Explanation
+Symbols are always unique.
+1️⃣5️⃣ Type Coercion Master Trap
+JavaScript
+console.log([] == ![]);
+✅ Answer
+
+true
+Explanation
+Steps:
+Plain text
+![] → false
+[] == false → true
+1️⃣6️⃣ Currying Example
+JavaScript
+function sum(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(sum(1)(2)(3));
+✅ Answer
+
+6
+1️⃣7️⃣ Optional Chaining
+JavaScript
+const obj = {};
+
+console.log(obj?.a?.b);
+✅ Answer
+
+undefined
+1️⃣8️⃣ Closure in Loop (Classic)
+JavaScript
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+✅ Answer
+
+3
+3
+3
+Fix
+JavaScript
+for (let i = 0; i < 3; i++)
+1️⃣9️⃣ Shallow Copy Trap
+JavaScript
+const obj1 = { a: 1, b: { c: 2 } };
+
+const obj2 = { ...obj1 };
+
+obj2.b.c = 5;
+
+console.log(obj1.b.c);
+✅ Answer
+
+5
+2️⃣0️⃣ Promise Chain Trap
+JavaScript
+Promise.resolve(1)
+  .then(x => x + 1)
+  .then(x => {
+    console.log(x);
+  });
+✅ Answer
+
+2
+⭐ Very Strong Candidate Filter Question
+JavaScript
+console.log({} + []);
+console.log([] + {});
+✅ Answer
+
+0
+"[object Object]"
+Tests:
+Parsing rules
+Type coercion depth
+
+
+
+If you're interviewing strong candidates
+These topics must be strong:
+Event Loop
+Microtasks vs Macrotasks
+Closures
+Promises
+Prototype chain
+Memory management
+Async flows
+Functional programming
+
+
+
+
+
+Here are JavaScript tricky questions with answers — focused on 5+ years experience level. These are the kinds of questions that quickly reveal real JavaScript depth.
+JavaScript Tricky Questions with Answers (5+ Years)
+1️⃣ Hoisting — var
+JavaScript
+console.log(a);
+
+var a = 10;
+
+console.log(a);
+✅ Answer
+
+undefined
+10
+Explanation
+var a is hoisted.
+Initialization (=10) happens later.
+So first log prints undefined.
+Internally:
+JavaScript
+var a;
+console.log(a); // undefined
+a = 10;
+console.log(a); // 10
+2️⃣ let Hoisting (Temporal Dead Zone)
+JavaScript
+console.log(a);
+
+let a = 10;
+✅ Answer
+
+ReferenceError
+Explanation
+let is hoisted but not initialized.
+Accessing before initialization → Temporal Dead Zone (TDZ).
+3️⃣ Function Hoisting
+JavaScript
+test();
+
+function test() {
+  console.log("Hello");
+}
+✅ Answer
+
+Hello
+Explanation
+Function declarations are fully hoisted.
+4️⃣ Function Expression Hoisting
+JavaScript
+test();
+
+var test = function () {
+  console.log("Hello");
+};
+✅ Answer
+
+TypeError: test is not a function
+Explanation
+Only var test is hoisted.
+JavaScript
+var test;
+
+test(); // undefined()
+5️⃣ Closure Counter
+JavaScript
+function outer() {
+
+  let count = 0;
+
+  return function () {
+    count++;
+    console.log(count);
+  };
+}
+
+const counter = outer();
+
+counter();
+counter();
+counter();
+✅ Answer
+
+1
+2
+3
+Explanation
+Closure remembers count between calls.
+6️⃣ Loop + Closure (var)
+JavaScript
+for (var i = 0; i < 3; i++) {
+
+  setTimeout(() => {
+    console.log(i);
+  }, 1000);
+
+}
+✅ Answer
+
+3
+3
+3
+Explanation
+var is function-scoped.
+Same i used in all callbacks.
+After loop → i = 3.
+Fix
+JavaScript
+for (let i = 0; i < 3; i++)
+Output:
+
+0
+1
+2
+7️⃣ Event Loop — Promise vs setTimeout
+JavaScript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("Promise");
+});
+
+console.log("End");
+✅ Answer
+
+Start
+End
+Promise
+Timeout
+Explanation
+Execution order:
+Sync code
+Microtasks (Promise)
+Macrotasks (setTimeout)
+8️⃣ this Keyword
+JavaScript
+const obj = {
+  name: "React",
+  show: function () {
+    console.log(this.name);
+  }
+};
+
+obj.show();
+✅ Answer
+
+React
+Explanation
+this refers to calling object.
+9️⃣ Arrow Function this
+JavaScript
+const obj = {
+  name: "React",
+
+  show: () => {
+    console.log(this.name);
+  }
+};
+
+obj.show();
+✅ Answer
+
+undefined
+Explanation
+Arrow functions don't have their own this.
+They inherit from outer scope.
+🔟 Object Reference
+JavaScript
+const a = { x: 1 };
+
+const b = a;
+
+b.x = 5;
+
+console.log(a.x);
+✅ Answer
+
+5
+Explanation
+Objects are passed by reference.
+1️⃣1️⃣ Shallow Copy Trap
+JavaScript
+const obj1 = {
+  a: 1,
+  b: { c: 2 }
+};
+
+const obj2 = { ...obj1 };
+
+obj2.b.c = 5;
+
+console.log(obj1.b.c);
+✅ Answer
+
+5
+Explanation
+Spread operator makes shallow copy.
+Nested objects still reference same memory.
+1️⃣2️⃣ Array Mapping Trap
+JavaScript
+const arr = [1, 2, 3];
+
+const result = arr.map(num => {
+  if (num > 1) return;
+  return num * 2;
+});
+
+console.log(result);
+✅ Answer
+
+[2, undefined, undefined]
+Explanation
+No return for numbers > 1.
+1️⃣3️⃣ Promise Chain Error
+JavaScript
+Promise.resolve(1)
+  .then(x => x + 1)
+  .then(x => {
+    throw new Error("Error");
+  })
+  .then(x => console.log(x))
+  .catch(err => console.log("Caught"));
+✅ Answer
+
+Caught
+1️⃣4️⃣ Async Await Order
+JavaScript
+async function test() {
+
+  console.log(1);
+
+  await Promise.resolve();
+
+  console.log(2);
+}
+
+console.log(3);
+
+test();
+
+console.log(4);
+✅ Answer
+
+3
+1
+4
+2
+1️⃣5️⃣ Type Coercion
+JavaScript
+console.log([] + []);
+console.log([] + {});
+console.log({} + []);
+✅ Answer
+
+""
+"[object Object]"
+0
+Explanation:
+Arrays convert to strings.
+{} sometimes parsed as block.
+1️⃣6️⃣ Equality Trap
+JavaScript
+console.log(false == "0");
+console.log(false === "0");
+✅ Answer
+
+true
+false
+Explanation:
+== allows type coercion.
+=== checks type + value.
+1️⃣7️⃣ NaN Trick
+JavaScript
+console.log(NaN === NaN);
+✅ Answer
+
+false
+Explanation
+NaN is never equal to itself.
+Correct check:
+JavaScript
+Number.isNaN(value);
+1️⃣8️⃣ Array Length Trick
+JavaScript
+const arr = [1, 2, 3];
+
+arr.length = 1;
+
+console.log(arr);
+✅ Answer
+
+[1]
+1️⃣9️⃣ Destructuring Default
+JavaScript
+const { a = 5 } = { a: undefined };
+
+console.log(a);
+✅ Answer
+
+5
+2️⃣0️⃣ Prototype Question
+JavaScript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.say = function () {
+  console.log(this.name);
+};
+
+const p1 = new Person("John");
+
+p1.say();
+✅ Answer
+
+John
+Explanation
+say() comes from prototype.
+⭐ Practical Coding Answers
+Debounce Implementation
+JavaScript
+function debounce(fn, delay) {
+
+  let timer;
+
+  return function (...args) {
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+
+  };
+}
+Throttle Implementation
+JavaScript
+function throttle(fn, delay) {
+
+  let lastCall = 0;
+
+  return function (...args) {
+
+    const now = Date.now();
+
+    if (now - lastCall >= delay) {
+
+      lastCall = now;
+
+      fn.apply(this, args);
+
+    }
+
+  };
+}
+Flatten Array
+JavaScript
+function flatten(arr) {
+
+  return arr.reduce((acc, val) => {
+
+    return acc.concat(
+      Array.isArray(val)
+        ? flatten(val)
+        : val
+    );
+
+  }, []);
+
+}
+Deep Clone
+JavaScript
+function deepClone(obj) {
+
+  return JSON.parse(
+    JSON.stringify(obj)
+  );
+
+}
+
+
+ practical problems suitable for 5 years React developers. 
+1️⃣ Build Reusable Data Table Component (Very Important)
+Problem
+Create a reusable table component with:
+Features:
+Dynamic columns
+Sorting
+Pagination
+Search filtering
+Loading state
+Empty state
+Reusable across pages
+Input Example
+JavaScript
+columns = [
+ { key: "name", label: "Name" },
+ { key: "email", label: "Email" },
+ { key: "role", label: "Role" }
+];
+Expected Skills
+Component reusability
+Props-driven UI
+Performance thinking
+Clean architecture
+Strong Candidate Bonus
+Server-side pagination
+Column sorting icons
+Memoized rendering
+2️⃣ Build Custom Hook — useDebounce
+Problem
+Create reusable hook:
+JavaScript
+useDebounce(value, delay)
+Behavior
+Delay value update
+Prevent frequent API calls
+Should work for search inputs
+Usage Example
+JavaScript
+const debouncedValue = useDebounce(search, 500);
+Expected Skills
+Closures
+Hooks
+Performance optimization
+3️⃣ Implement Protected Routes
+Problem
+Create:
+Login page
+Dashboard page
+Protected routes
+Behavior:
+If user not logged in → redirect to login
+If logged in → allow dashboard
+Use:
+LocalStorage OR Context
+Expected Skills
+Routing logic
+Authentication flow
+Navigation handling
+4️⃣ Build API Caching System
+Problem
+Create reusable:
+JavaScript
+useFetchWithCache(url)
+Behavior:
+Fetch API data
+Cache response
+Avoid duplicate calls
+Refetch when needed
+Expected Skills
+Custom hooks
+Memory caching
+API optimization
+5️⃣ Optimize Slow Rendering Component
+Problem
+You give slow component:
+JSX
+function List({ items }) {
+  return items.map(item => {
+    console.log("render");
+    return <Item key={item.id} item={item} />;
+  });
+}
+Ask:
+Optimize rendering performance
+Expected Fixes
+React.memo
+useMemo
+useCallback
+Expected Skills
+Performance optimization
+Rendering behavior
+6️⃣ Build Dynamic Form Generator
+Problem
+Build form from JSON config:
+JavaScript
+fields = [
+ { name: "name", type: "text" },
+ { name: "email", type: "email" },
+ { name: "password", type: "password" }
+];
+Form should:
+Render dynamically
+Validate fields
+Show errors
+Expected Skills
+Dynamic UI rendering
+Form handling
+Validation logic
+7️⃣ Implement Drag & Drop List
+Problem
+Create sortable list:
+Features:
+Drag items
+Change order
+Save order
+Suggested library:
+react-beautiful-dnd
+Expected Skills
+UI interaction
+State updates
+Library usage
+8️⃣ Implement Infinite Scroll
+Problem
+Load data on scroll:
+Behavior:
+Fetch next page
+Append to list
+Show loader
+API Example:
+Plain text
+https://dummyjson.com/products
+Expected Skills
+Scroll events
+Pagination logic
+Performance handling
+9️⃣ Build Theme Switcher (Context API)
+Problem
+Create:
+Light theme
+Dark theme
+Apply globally
+Use:
+Context API
+Expected Skills
+Global state
+Context design
+🔟 Implement Error Boundary
+Problem
+Create:
+JSX
+<ErrorBoundary>
+   <Component />
+</ErrorBoundary>
+Behavior:
+Catch component errors
+Show fallback UI
+Expected Skills
+Error handling
+Class components knowledge
+1️⃣1️⃣ Create Higher Order Component (HOC)
+Problem
+Create:
+JavaScript
+withAuth(Component)
+Behavior:
+Check authentication
+Redirect if not logged in
+Expected Skills
+HOC design
+Component composition
+1️⃣2️⃣ Build Search with Debounce + API
+Problem
+Search users:
+API:
+Plain text
+https://jsonplaceholder.typicode.com/users
+Features:
+Search input
+Debounce API calls
+Show results
+Expected Skills
+API integration
+Debounce logic
+UI responsiveness
+1️⃣3️⃣ Build Shopping Cart (Redux Toolkit)
+Problem
+Cart features:
+Add item
+Remove item
+Update quantity
+Calculate total
+Expected Skills
+Redux Toolkit
+State management
+1️⃣4️⃣ Lazy Loading Implementation
+Problem
+Split large components:
+Use:
+JavaScript
+React.lazy
+Suspense
+Behavior:
+Load components only when needed
+Expected Skills
+Code splitting
+Performance optimization
+1️⃣5️⃣ Fix Broken React Code (Debugging)
+Problem
+Give broken code:
+JSX
+useEffect(() => {
+ fetchData();
+});
+Ask:
+Find issue
+Expected Answer:
+Missing dependency array
+
+
+
+
+
+
+
+Common Faced issues :
+
+1. How to do Accessibility in react application?
+2. Libraries 
+- date libraries 
+- common used utility libraries 
+- unit testing libraries 
+- UI Libraries 
+3. How do you handle npm package depreciation 
+4. How to host frontend application in aws?
+5. How to docker front-end application?
+6. Typescript?
+7. Encryption and Decryption algorithm used?
+8. How to verify OTP from third-party module ? Bbps to ibmb to bbps
+9. Build application using webpack
+10. Build application and run as static contents
+
+
+Practical:
+1. 
+2. 
+
+
+
+
+
+
+
+
+
+
+
+
